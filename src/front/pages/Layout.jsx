@@ -8,12 +8,12 @@ import { Navbar2 } from "../components/Navbar2"
 export const Layout = () => {
     return (
         <ScrollToTop>
-            <>
-            {window.location.pathname !== "/info"  && <Navbar />}
-            {window.location.pathname === "/info"  && <Navbar2 />}
+            <div className="background-image">
+                {window.location.pathname !== "/info" && <Navbar />}
+                {window.location.pathname === "/info" && <Navbar2 />}
                 <Outlet />
-            <Footer />
-            </>
+                <Footer />
+            </div>
         </ScrollToTop>
     )
 }

@@ -42,7 +42,13 @@ export const Home = () => {
 
 	return (
 		<div className="container mt-5 text-center">
-			<div className="text-center">
+			<div className="text-center bg-dark p-5 rounded text-light">
+				<div className="d-flex align-items-center mb-4 justify-content-center text-center text-warning flex-column">
+					<span className="text-warning"><img src="src/front/assets/img/Secret order logo.png" width="300" height="300" className="d-inline-block align-top mr-2"></img></span> 
+					<span><h1>Welcome to the Secret Order</h1></span>
+				</div>
+				<p className="lead"><strong>The most secretive organization in the world</strong></p>
+				<p> Login with your secret member credentials to access the secret information, or if you are not on the list, sign up to know all about the secrets of the Secret Order.</p>
 				<button type="submit" className="btn btn-warning w-100" onClick={goToPage} name="login">Login</button>
 				<button type="submit" className="btn btn-warning w-100 mt-2" onClick={goToPage} name="signup">Signup</button>
 			</div>

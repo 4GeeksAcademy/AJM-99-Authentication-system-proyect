@@ -1,0 +1,8 @@
+.background-image {
+    background-image: url('/src/front/assets/img/background-image-gold.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
