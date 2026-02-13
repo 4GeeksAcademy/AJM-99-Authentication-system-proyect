@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react"
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
+import { login } from "../services/backendServices.js";
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
 
@@ -9,6 +11,7 @@ export const Home = () => {
 		email: "",
 		password: ""
 	})
+	const navigate = useNavigate()
 
 	const handleChange = (e) => {
 		setUser({
@@ -21,7 +24,9 @@ export const Home = () => {
 			e.preventDefault()
 			if (!user.email || !user.password){
 				alert("All fields are required")
+				return
 			}
+			login(user, navigate)
 		}
 
 
@@ -55,7 +60,7 @@ export const Home = () => {
 
 	return (
 		<div className="container mt-5">
-			<form>
+			<form onSubmit={handleSubmit}>
 				<div className="mb-3">
 
 					<label htmlFor="email" className="form-label">Email</label>
@@ -65,7 +70,7 @@ export const Home = () => {
 					<label htmlFor="password" className="form-label">Password</label>
 					<input type="text" name="password" placeholder="Enter your password" className="form-control" value={user.password} onChange={handleChange}></input>
 				</div>
-				<button type="submit" className="btn btn-warning w-100" onSubmit={handleSubmit}>Login</button>
+				<button type="submit" className="btn btn-warning w-100">Login</button>
 			</form>
 		</div>
 	);

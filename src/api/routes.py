@@ -58,11 +58,13 @@ def login():
     
     existing_user = db.session.execute(select(User).where(User.email == email)).scalar_one_or_none()
 
-    if not existing_user or not existing_user.check_password(password):
+    if existing_user is None:
         return jsonify({"error":"Incorrect email or password"}), 400
-    
-    access_token = create_access_token(identity=str(existing_user.id))
-    return jsonify({"msg":"Login successfull", "token": access_token}), 200
+    if existing_user.check_password(password):
+        access_token = create_access_token(identity=str(existing_user.id))
+        return jsonify({"msg":"Login successfull", "token": access_token}), 200
+    else:
+        return jsonify({"error":"Incorrect email or password"}), 400
 
 @api.route('/theXfiles', methods=['GET'])
 @jwt_required()
