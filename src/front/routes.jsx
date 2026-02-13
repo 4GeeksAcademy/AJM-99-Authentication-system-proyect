@@ -8,8 +8,10 @@ import {
 import { Layout } from "./pages/Layout";
 import { Home } from "./pages/Home";
 import { Single } from "./pages/Single";
-import { Demo } from "./pages/Demo";
-import { TheXfiles } from "./pages/TheXfiles";
+import { SecretInfo } from "./pages/SecretInfo";
+import { Info } from "./pages/Info";
+import { Login } from "./pages/Login";
+import { Signup } from "./pages/Signup";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -25,8 +27,10 @@ export const router = createBrowserRouter(
         {/* Nested Routes: Defines sub-routes within the BaseHome component. */}
         <Route path= "/" element={<Home />} />
         <Route path="/single/:theId" element={ <Single />} />  {/* Dynamic route for single items */}
-        <Route path="/demo" element={<Demo />} />
-        <Route path="/thexfiles" element={<TheXfiles />} /> {/* New route for The X-Files page */}
+        <Route path="/info" element={<Info />} />
+        <Route path="/secretinfo" element={<SecretInfo />} /> {/* New route for Secret Info page */}
+        <Route path="/login" element={<Login />} /> {/* New route for Login page */}
+        <Route path="/signup" element={<Signup />} /> {/* New route for Signup page, using Signup component */}
       </Route>
     )
 );

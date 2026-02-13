@@ -45,7 +45,7 @@ def signup():
 
     db.session.add(new_user)
     db.session.commit()
-    return jsonify("Your user has been created successfully"), 201
+    return jsonify({"error":"Your user has been created successfully"}), 201
 
 @api.route('/login', methods=['POST'])
 def login():
@@ -66,14 +66,14 @@ def login():
     else:
         return jsonify({"error":"Incorrect email or password"}), 400
 
-@api.route('/theXfiles', methods=['GET'])
+@api.route('/secretinfo', methods=['GET'])
 @jwt_required()
-def access_to_the_X_files():
+def access_to_the_secret_info():
     user_id = get_jwt_identity()
     user = db.session.get(User, int(user_id))
     if not user:
         return jsonify({"error":"User not found"}), 404
-    return jsonify("W3lc0m3, y0u hav3 acc3ss t0 th3 X fil3s, n0w y0u kn0w th3 truth. B3 CAR3FUL!!"), 200
+    return jsonify("W3lc0m3, y0u hav3 acc3ss t0 th3 s3cr3t inf0rm4ti0n, n0w y0u kn0w th3 truth. B3 CAR3FUL!!"), 200
 
 
     

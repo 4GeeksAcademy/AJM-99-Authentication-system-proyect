@@ -9,7 +9,23 @@ export const login = async (user, navigate) => {
         alert(data.error)
     }else {
         localStorage.setItem('token', data.token)
-        navigate('/thexfiles');
+        navigate('/secretinfo');
+    }
+
+}
+
+export const signup = async (user, navigate) => {
+    const response = await fetch (`${import.meta.env.VITE_BACKEND_URL}/api/signup`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(user)
+    })
+    const data = await response.json()
+    if (!response.ok) {
+        alert(data.error)
+    }else {
+        alert(data.message)
+        navigate('/');
     }
 
 }
@@ -19,7 +35,7 @@ export const privateCheck = async () => {
     if (!token) {
         return false
     }
-    const response = await fetch (`${import.meta.env.VITE_BACKEND_URL}/api/profile`, {
+    const response = await fetch (`${import.meta.env.VITE_BACKEND_URL}/api/secretinfo`, {
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     })
     const data = await response.json()

@@ -7,30 +7,12 @@ import { useNavigate } from "react-router-dom";
 export const Home = () => {
 
 	const { store, dispatch } = useGlobalReducer()
-	const [ user, setUser ] = useState({
-		email: "",
-		password: ""
-	})
 	const navigate = useNavigate()
 
-	const handleChange = (e) => {
-		setUser({
-			...user,
-			[e.target.name]:e.target.value
-		})
+	const goToPage = (e) => {
+		navigate('/' + e.target.name)
 	}
-
-		const handleSubmit = (e) => {
-			e.preventDefault()
-			if (!user.email || !user.password){
-				alert("All fields are required")
-				return
-			}
-			login(user, navigate)
-		}
-
-
-	console.log(user)
+	
 
 	const loadMessage = async () => {
 		try {
@@ -59,19 +41,11 @@ export const Home = () => {
 	}, [])
 
 	return (
-		<div className="container mt-5">
-			<form onSubmit={handleSubmit}>
-				<div className="mb-3">
-
-					<label htmlFor="email" className="form-label">Email</label>
-					<input type="text" name="email" placeholder="Enter your email" className="form-control" value={user.email} onChange={handleChange}></input>
-				</div>
-				<div className="mb-3">
-					<label htmlFor="password" className="form-label">Password</label>
-					<input type="text" name="password" placeholder="Enter your password" className="form-control" value={user.password} onChange={handleChange}></input>
-				</div>
-				<button type="submit" className="btn btn-warning w-100">Login</button>
-			</form>
+		<div className="container mt-5 text-center">
+			<div className="text-center">
+				<button type="submit" className="btn btn-warning w-100" onClick={goToPage} name="login">Login</button>
+				<button type="submit" className="btn btn-warning w-100 mt-2" onClick={goToPage} name="signup">Signup</button>
+			</div>
 		</div>
 	);
 }; 
